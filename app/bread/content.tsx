@@ -3,27 +3,29 @@
 import { createClient } from '@supabase/supabase-js'
 import { useEffect, useState } from 'react';
 
-const TABLE_BAKES = 'bread-monster__bakes';
-
 async function getData() {
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   );
+  console.log('table:');
+  console.log(process.env.NEXT_PUBLIC_TABLE_BAKES!);
   const { data } = await supabase
-    .from(TABLE_BAKES)
+    .from(process.env.NEXT_PUBLIC_TABLE_BAKES!)
     .select()
     .order('id', { ascending: true });
-  console.log('data');
-  console.dir(data);
-  return data;
+  // console.log('data:');
+  // console.dir(data);
+  return data ? [0] : [];
 }
 
 export default function Bakes() {
-  const [breadData, setBreadData] = useState(null);
+  const [breadData, setBreadData] = useState();
 
   useEffect(() => {
-    getData().then(data => setBreadData(data));
+    getData().then(data => {
+      setBreadData(data)
+    });
   }, []);
 
   if (breadData) {
