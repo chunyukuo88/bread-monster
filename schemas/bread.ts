@@ -14,7 +14,7 @@ type SecondaryIngredients = {
   ingredients: Ingredient[];
 };
 
-type breadSchema = {
+type Bread = {
   id: number; // default Postgres column
   created_at: string; // default Postgres column
 
