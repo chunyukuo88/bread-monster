@@ -1,13 +1,10 @@
 'use client';
 
-import { createClient } from '@supabase/supabase-js'
+import { createClient} from "@/utils/supabase/client";
 import { useEffect, useState } from 'react';
 
 async function getData() {
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  );
+  const supabase = createClient();
   const { data } = await supabase
     .from(process.env.NEXT_PUBLIC_TABLE_BAKES!)
     .select('*')
