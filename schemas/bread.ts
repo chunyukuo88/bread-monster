@@ -41,4 +41,5 @@ type Bread = {
   }
   imageUrls: string[];
   toolsRequired: string[];
+  recipeName: string;
 }

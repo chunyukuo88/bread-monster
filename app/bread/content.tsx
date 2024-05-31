@@ -13,14 +13,11 @@ async function getData() {
 }
 
 export default function Bakes() {
-  const [breadData, setBreadData] = useState<Bread>();
+  const [breadData, setBreadData] = useState<Bread[]>();
 
   useEffect(() => {
-    getData().then(data => {
-      console.log('data:');
-      console.dir(data[0]?.countryOfOrigin);
-
-      setBreadData(data[0])
+    getData().then(arrayOfBreads => {
+      setBreadData(arrayOfBreads);
     });
   }, []);
 
@@ -29,6 +26,13 @@ export default function Bakes() {
   }
 
   return <>
-    <div>{breadData?.countryOfOrigin}</div>
+    {breadData
+      ? breadData.map((bread) => (
+        <>
+          <div>{bread.recipeName}</div>
+          <div>{bread.countryOfOrigin}</div>
+        </>
+      ))
+      : null}
   </>
 }
