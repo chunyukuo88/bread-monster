@@ -7,10 +7,11 @@ import Header from "@/components/Header";
 
 export default async function Index() {
   const canInitSupabaseClient = () => {
-    // This function is just for the interactive tutorial.
-    // Feel free to remove it once you have Supabase connected.
     try {
-      createClient();
+      const result = createClient();
+      console.log('result:');
+      console.dir(result);
+      console.log(typeof result);
       return true;
     } catch (e) {
       return false;

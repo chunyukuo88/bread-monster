@@ -21,17 +21,13 @@ export default function Bakes() {
     });
   }, []);
 
-  if (breadData) {
-    console.log(breadData);
-  }
-
   return <>
     {breadData
       ? breadData.map((bread) => (
-        <>
+        <div key={bread.id} className={`bread id: ${bread.id}`}>
           <div>{bread.recipeName}</div>
           <div>{bread.countryOfOrigin}</div>
-        </>
+        </div>
       ))
       : null}
   </>
