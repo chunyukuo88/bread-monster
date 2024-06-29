@@ -1,7 +1,8 @@
 import AuthButton from "@/components/AuthButton";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
-import BreadForm from "@/app/protected/bread-form";
+import BreadForm from "@/app/admin/bread-form";
+import {routes} from "@/routes";
 
 export default async function ProtectedPage() {
   const supabase = createClient();
@@ -9,7 +10,7 @@ export default async function ProtectedPage() {
     data: { user },
   } = await supabase.auth.getUser();
   if (!user) {
-    return redirect("/login");
+    return redirect(`/${routes.LOGIN}`);
   }
 
 

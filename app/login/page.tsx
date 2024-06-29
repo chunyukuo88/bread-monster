@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { SubmitButton } from "./submit-button";
+import {routes} from "@/routes";
 
 type LoginProps = {
   searchParams: { message: string };
@@ -24,11 +25,11 @@ export default function Login(props: LoginProps) {
     });
 
     if (error) {
-      return redirect("/login?message=Could not authenticate user");
+      return redirect(`/${routes.LOGIN}?message=Could not authenticate user`);
     }
 
     // TODO: Note that this aligns with the URL in the browser. Update this to the page allowing me to edit breads.
-    return redirect("/protected");
+    return redirect(`/${routes.ADMIN}`);
   };
 
   const signUp = async (formData: FormData) => {
@@ -48,10 +49,10 @@ export default function Login(props: LoginProps) {
     });
 
     if (error) {
-      return redirect("/login?message=Could not authenticate user");
+      return redirect(`/${routes.LOGIN}?message=Could not authenticate user`);
     }
 
-    return redirect("/login?message=Check email to continue sign in process");
+    return redirect(`/${routes.LOGIN}?message=Check email to continue sign in process`);
   };
 
   return (
