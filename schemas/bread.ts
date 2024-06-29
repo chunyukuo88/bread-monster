@@ -18,6 +18,8 @@ type Bread = {
   id: number; // default Postgres column
   created_at: string; // default Postgres column
 
+  recipeName: string;
+
   flatBread: boolean;       // Taco shells, naan
   sameDayRecipe: boolean;   // Taco shells, Japanese milk bread, naan, peanut butter bread
   wholeWheat: boolean;
@@ -41,5 +43,4 @@ type Bread = {
   }
   imageUrls: string[];
   toolsRequired: string[];
-  recipeName: string;
 }
