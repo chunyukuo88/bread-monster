@@ -1,17 +1,23 @@
-type Difficulty = 'beginner' | 'intermediate' | 'advanced';
+export type Difficulty = 'beginner' | 'intermediate' | 'advanced';
 
-type Ferment = 'biga' | 'poolish' | 'pâte fermentée' | 'levain' | 'barm' | 'soaker';
+export type Ferment = 'biga' | 'poolish' | 'pâte fermentée' | 'levain' | 'barm' | 'soaker';
 
-type Ingredient = {
+export type Ingredient = {
   name: string;
   weight: number;
   caloriesPerGram?: number;
   note: string;
 };
 
-type SecondaryIngredients = {
+export type SecondaryIngredients = {
   name: string;
   ingredients: Ingredient[];
+};
+
+export type ImageUrls = {
+  pristine: string;
+} & {
+  [key: string]: string;
 };
 
 type Bread = {
