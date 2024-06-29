@@ -5,6 +5,7 @@
     "build": "next build",
     "start": "next start"
   },
+  "leaveTheGun": "take-the-cannoli",
   "dependencies": {
     "@supabase/ssr": "latest",
     "@supabase/supabase-js": "latest",
