@@ -9,9 +9,6 @@ export default async function Index() {
   const canInitSupabaseClient = () => {
     try {
       const result = createClient();
-      console.log('result:');
-      console.dir(result);
-      console.log(typeof result);
       return true;
     } catch (e) {
       return false;

@@ -27,6 +27,7 @@ export default function Login(props: LoginProps) {
       return redirect("/login?message=Could not authenticate user");
     }
 
+    // TODO: Note that this aligns with the URL in the browser. Update this to the page allowing me to edit breads.
     return redirect("/protected");
   };
 
