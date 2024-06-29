@@ -1,6 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import {routes} from "@/routes";
 
 export default async function AuthButton() {
   const supabase = createClient();
@@ -14,7 +15,7 @@ export default async function AuthButton() {
 
     const supabase = createClient();
     await supabase.auth.signOut();
-    return redirect("/login");
+    return redirect(`/${routes.LOGIN}`);
   };
 
   return user ? (
@@ -28,7 +29,7 @@ export default async function AuthButton() {
     </div>
   ) : (
     <Link
-      href="/login"
+      href={`/${routes.LOGIN}`}
       className="py-2 px-3 flex rounded-md no-underline bg-btn-background hover:bg-btn-background-hover"
     >
       Login

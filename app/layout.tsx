@@ -11,16 +11,16 @@ export const metadata = {
   description: "The fastest way to build apps with Next.js and Supabase",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+type RootLayoutChildren = {
+  children: React.ReactNode
+};
+
+export default function RootLayout(props: RootLayoutChildren) {
   return (
     <html lang="en" className={GeistSans.className}>
       <body className="bg-background text-foreground">
         <main className="min-h-screen flex flex-col items-center">
-          {children}
+          {props.children}
         </main>
       </body>
     </html>

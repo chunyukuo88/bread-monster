@@ -1,22 +1,36 @@
-type Difficulty = 'beginner' | 'intermediate' | 'advanced';
+export type Difficulty = 'beginner' | 'intermediate' | 'advanced';
 
-type Ferment = 'biga' | 'poolish' | 'pâte fermentée' | 'levain' | 'barm' | 'soaker';
+export type Ferment = 'no ferment' | 'biga' | 'poolish' | 'pâte fermentée' | 'levain' | 'barm' | 'soaker';
 
-type Ingredient = {
+export enum Ferments {
+  Barm = 'barm',
+  Biga = 'biga',
+  Levain = 'levain',
+  NoFerment = 'no ferment',
+  PâteFermentée = 'pâte fermentée',
+  Poolish = 'poolish',
+  Soaker = 'soaker'
+}
+
+export type Ingredient = {
   name: string;
-  weight: number;
+  amount: number;
+  unit: string;
   caloriesPerGram?: number;
   note: string;
 };
 
-type SecondaryIngredients = {
-  name: string;
-  ingredients: Ingredient[];
+export type ImageUrls = {
+  pristine: string;
+} & {
+  [key: string]: string;
 };
 
 type Bread = {
   id: number; // default Postgres column
   created_at: string; // default Postgres column
+
+  recipeName: string;
 
   flatBread: boolean;       // Taco shells, naan
   sameDayRecipe: boolean;   // Taco shells, Japanese milk bread, naan, peanut butter bread
@@ -28,7 +42,7 @@ type Bread = {
   bakeTempFahrenheit: number | null;
   difficulty: Difficulty;
   ingredientsPrimary: Ingredient[];
-  ingredientsSecondary?: SecondaryIngredients[];
+  ingredientsSecondary?: Ingredient[];
   instructions: string[];
   preferment?: {
     type: Ferment;
