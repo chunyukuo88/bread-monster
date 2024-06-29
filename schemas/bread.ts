@@ -1,17 +1,23 @@
 export type Difficulty = 'beginner' | 'intermediate' | 'advanced';
 
-export type Ferment = 'biga' | 'poolish' | 'pâte fermentée' | 'levain' | 'barm' | 'soaker';
+export type Ferment = 'no ferment' | 'biga' | 'poolish' | 'pâte fermentée' | 'levain' | 'barm' | 'soaker';
+
+export enum Ferments {
+  Barm = 'barm',
+  Biga = 'biga',
+  Levain = 'levain',
+  NoFerment = 'no ferment',
+  PâteFermentée = 'pâte fermentée',
+  Poolish = 'poolish',
+  Soaker = 'soaker'
+}
 
 export type Ingredient = {
   name: string;
-  weight: number;
+  amount: number;
+  unit: string;
   caloriesPerGram?: number;
   note: string;
-};
-
-export type SecondaryIngredients = {
-  name: string;
-  ingredients: Ingredient[];
 };
 
 export type ImageUrls = {
@@ -36,7 +42,7 @@ type Bread = {
   bakeTempFahrenheit: number | null;
   difficulty: Difficulty;
   ingredientsPrimary: Ingredient[];
-  ingredientsSecondary?: SecondaryIngredients[];
+  ingredientsSecondary?: Ingredient[];
   instructions: string[];
   preferment?: {
     type: Ferment;

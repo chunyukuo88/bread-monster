@@ -2,7 +2,7 @@
 
 import { FormEvent, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
-import {Difficulty, Ferment, ImageUrls, Ingredient, SecondaryIngredients} from "@/schemas/bread";
+import {Difficulty, Ferment, Ferments, ImageUrls, Ingredient} from "@/schemas/bread";
 
 export default function BreadForm() {
   const supabase = createClient();
@@ -30,7 +30,7 @@ export default function BreadForm() {
   const [bakeTempFahrenheit, setBakeTempFahrenheit] = useState<number | null>(null);
   const [difficulty, setDifficulty] = useState<Difficulty>('beginner');
   const [ingredientsPrimary, setIngredientsPrimary] = useState<Ingredient[]>([]);
-  const [ingredientsSecondary, setIngredientsSecondary] = useState<SecondaryIngredients[]>([]);
+  const [ingredientsSecondary, setIngredientsSecondary] = useState<Ingredient[]>([]);
   const [instructions, setInstructions] = useState<string[]>([]);
   const [preferment, setPreferment] = useState<{
     type: Ferment;
@@ -50,7 +50,7 @@ export default function BreadForm() {
     setIngredientsPrimary(updatedIngredients);
   };
 
-  const handleSecondaryIngredientChange = (index: number, field: keyof SecondaryIngredients, value: string) => {
+  const handleSecondaryIngredientChange = (index: number, field: keyof Ingredient, value: string) => {
     const updatedIngredients = [...ingredientsSecondary];
     updatedIngredients[index] = { ...updatedIngredients[index], [field]: value };
     setIngredientsSecondary(updatedIngredients);
@@ -248,18 +248,15 @@ export default function BreadForm() {
           <h3>Preferment</h3>
           <select
             value={preferment?.type || ''}
-            onChange={(e) => setPreferment(e.target.value ? {type: e.target.value as Ferment, ingredients: []} : null)}
+            onChange={(e) => setPreferment(e.target.value ? { type: e.target.value as Ferment, ingredients: [] } : null)}
           >
-            <option value="">No preferment</option>
-            <option value="poolish">Poolish</option>
-            <option value="biga">Biga</option>
-            <option value="sourdough">Sourdough</option>
+            <option value="">No ferment</option>
+            {Object.values(Ferments).map((fermentType) => (
+              <option key={fermentType} value={fermentType}>
+                {fermentType}
+              </option>
+            ))}
           </select>
-          {preferment && (
-            <div>
-              {/* Add inputs for preferment ingredients similar to primary ingredients */}
-            </div>
-          )}
         </div>
 
         <div>
